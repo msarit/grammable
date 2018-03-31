@@ -4,12 +4,17 @@ RSpec.describe GramsController, type: :controller do
   
   describe "grams#index action" do
     it "should successfully show the page" do
-      get :index # This line triggers an HTTP GET request to the "index" action
+      get :index
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "grams#new action" do
+    it "should require users to be logged in" do
+      get :new
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should successfully show the new gram form" do
       user = User.create(
         email:                  'fakeuser@gmail.com',
@@ -18,12 +23,17 @@ RSpec.describe GramsController, type: :controller do
         )
       sign_in user
 
-      get :new # This line triggers an HTTP GET request to the "new" action
+      get :new
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "grams#create action" do
+    it "should require users to be logged in" do
+      post :create, params: { gram: { message: 'Hello!'} }
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should successfully create a new gram in database" do
       user = User.create(
         email:                  'fakeuser@gmail.com',
@@ -32,7 +42,7 @@ RSpec.describe GramsController, type: :controller do
         )
       sign_in user
 
-      post :create, params: { gram: { message: 'Hello!'} } # This line triggers an HTTP POST request to the "create" action
+      post :create, params: { gram: { message: 'Hello!'} }
       expect(response).to redirect_to root_path
 
       gram = Gram.last
