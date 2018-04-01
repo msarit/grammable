@@ -6,4 +6,12 @@ FactoryBot.define do
     password "secretPassword"
     password_confirmation "secretPassword"
   end
+
+  factory :gram do
+    sequence :message do |m|
+    "Hello! This is dummy message No. #{m}."
+    end
+    association :user
+  end
+  
 end
