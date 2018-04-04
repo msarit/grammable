@@ -4,9 +4,11 @@ class GramsController < ApplicationController
   def index
   end
 
+
   def new
     @gram = Gram.new
   end
+
 
   def create
     @gram = current_user.grams.create(gram_params)
@@ -17,19 +19,25 @@ class GramsController < ApplicationController
       end
   end
 
+
   def show
     @gram = Gram.find_by_id(params[:id])
     return render_not_found if @gram.blank?
   end
 
+
   def edit
     @gram = Gram.find_by_id(params[:id])
     return render_not_found if @gram.blank?
+    return render_not_found(:forbidden) if @gram.user != current_user
   end
+
 
   def update
     @gram = Gram.find_by_id(params[:id])
     return render_not_found if @gram.blank?
+    return render_not_found(:forbidden) if @gram.user != current_user
+
     @gram.update_attributes(gram_params)
 
     if @gram.valid?
@@ -39,12 +47,15 @@ class GramsController < ApplicationController
     end
   end
 
+
   def destroy
     @gram = Gram.find_by_id(params[:id])
     return render_not_found if @gram.blank?
+    return render_not_found(:forbidden) if @gram.user != current_user
     @gram.destroy
     redirect_to root_path
   end
+
 
   private
 
@@ -52,7 +63,7 @@ class GramsController < ApplicationController
     params.require(:gram).permit(:message, :id)
   end
 
-  def render_not_found
-    render plain: 'Gram Not Found', status: :not_found
+  def render_not_found(status=:not_found)
+    render plain: "#{status.to_s.titleize}", status: status
   end
 end
