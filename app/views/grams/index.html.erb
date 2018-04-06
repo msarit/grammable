@@ -1,4 +1,5 @@
 <h1>Grams!</h1>
-<% @gram.each do |g| %>
+<% @grams.each do |g| %>
+<%= image_tag g.picture, class: 'img-fluid' %>
 <%= link_to g.message, gram_path(g.id) %>
 <% end %>

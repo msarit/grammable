@@ -2,7 +2,7 @@ class GramsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @gram = Gram.all
+    @grams = Gram.all
   end
 
 
@@ -61,7 +61,7 @@ class GramsController < ApplicationController
   private
 
   def gram_params
-    params.require(:gram).permit(:message, :id)
+    params.require(:gram).permit(:message, :id, :picture)
   end
 
   def render_not_found(status=:not_found)
