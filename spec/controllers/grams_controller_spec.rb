@@ -6,8 +6,8 @@ RSpec.describe GramsController, type: :controller do
 
     it "shouldn't allow users who didn't create a gram to destroy it" do
       gram = FactoryBot.create(:gram)
-      user = FactoryBot.create(:user)
-      sign_in user
+      diff_user = FactoryBot.create(:user)
+      sign_in diff_user
       delete :destroy, params: { id: gram.id }
       expect(response).to have_http_status(:forbidden)
     end
@@ -20,7 +20,7 @@ RSpec.describe GramsController, type: :controller do
 
     it "should allow user to successfully delete grams" do
       gram = FactoryBot.create(:gram)
-      sign_in gram.user # Why arent we creating a user first?
+      sign_in gram.user
       delete :destroy, params: { id: gram.id }
       redirect_to root_path
 
@@ -29,8 +29,8 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should return a 404 error if gram with the specified id cannot be found" do
-      user = FactoryBot.create(:user)
-      sign_in user
+      user_not_owner = FactoryBot.create(:user) # user necessary, else redirected to sign-in page 
+      sign_in user_not_owner
       delete :destroy, params: { id: 'SPACEDUCK' }
       expect(response).to have_http_status(:not_found)
     end
@@ -40,8 +40,8 @@ RSpec.describe GramsController, type: :controller do
 
     it "shouldn't allow a user who didn't create a gram to update it" do
       gram = FactoryBot.create(:gram)
-      user = FactoryBot.create(:user)
-      sign_in user
+      diff_user = FactoryBot.create(:user)
+      sign_in diff_user
       patch :update, params: { id: gram.id, gram: { message: 'An Update' } }
       expect(response).to have_http_status(:forbidden)
     end
@@ -84,8 +84,8 @@ RSpec.describe GramsController, type: :controller do
 
     it "shouldn't let a user who did not create the gram edit a gram" do
       gram = FactoryBot.create(:gram)
-      user = FactoryBot.create(:user)
-      sign_in user
+      diff_user = FactoryBot.create(:user)
+      sign_in diff_user
       get :edit, params: { id: gram.id }
       expect(response).to have_http_status(:forbidden)
     end

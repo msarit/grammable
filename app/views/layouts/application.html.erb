@@ -17,14 +17,14 @@
     <%= link_to 'Sign In', new_user_session_path %>
   <% end %>
 
-  <%= yield %>
-
   <% if notice.present? %>
     <p class="notice"><%= notice %></p>
   <% end %>
   <% if alert.present? %>
     <p class="alert"><%= alert %></p>
   <% end %>
+
+  <%= yield %>
 
   </body>
 </html>

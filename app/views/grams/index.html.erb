@@ -1,1 +1,4 @@
 <h1>Grams!</h1>
+<% @gram.each do |g| %>
+<%= link_to g.message, gram_path(g.id) %>
+<% end %>

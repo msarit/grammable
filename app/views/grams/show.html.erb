@@ -1,2 +1,7 @@
 <h1>Gram Detail Page</h1>
-<%= @gram.inspect %>
+<%= @gram.message %><br />
+-- <%= @gram.user.fullname %><br />
+<%= link_to 'Edit Gram', edit_gram_path(@gram.id) %><br />
+<%= link_to 'Delete Gram', gram_path(@gram.id), method: :delete %><br />
+<%= link_to 'Back To Home', root_path %><br />
+
