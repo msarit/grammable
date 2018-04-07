@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :comment do
+    
+  end
   
   factory :user do
     sequence :email do |n|
