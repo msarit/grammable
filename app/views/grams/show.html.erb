@@ -1,5 +1,5 @@
 <h1>Gram Detail Page</h1>
-<%= image_tag @gram.picture %><br />
+<%= image_tag @gram.picture, class: 'img-fluid' %><br />
 <%= @gram.message %><br />
 -- <%= @gram.user.fullname %><br />
 <%= link_to 'Edit Gram', edit_gram_path(@gram.id) %><br />
