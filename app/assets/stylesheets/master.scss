@@ -1,1 +1,5 @@
 @import "bootstrap";
+
+label.control-label.file.optional, label.control-label.file.required {
+  display: none;
+}
