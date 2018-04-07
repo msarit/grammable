@@ -2,7 +2,10 @@
 <%= image_tag @gram.picture, class: 'img-fluid' %><br />
 <%= @gram.message %><br />
 -- <%= @gram.user.fullname %><br />
+
+<% if current_user == @gram.user %>
 <%= link_to 'Edit Gram', edit_gram_path(@gram.id) %><br />
 <%= link_to 'Delete Gram', gram_path(@gram.id), method: :delete %><br />
+<% end %>
 <%= link_to 'Back To Home', root_path %><br />
 

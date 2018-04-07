@@ -1,6 +1,10 @@
-<h1>Edit Your Gram</h1>
+<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 card form">
+  
+  <h2>Edit Your Gram</h2>
 
-<%= simple_form_for @gram do |f| %>
-  <%= f.input :message %>
-  <%= f.submit "Post!" %>
-<% end %>
+  <%= simple_form_for @gram do |f| %>
+    <%= f.input :message %>
+    <%= f.input :picture %>
+    <%= f.submit "Update", class: 'my-btn' %>
+  <% end %>
+</div>
