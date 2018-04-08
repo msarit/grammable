@@ -5,5 +5,5 @@ class Gram < ApplicationRecord
   mount_uploader :picture, PictureUploader
   
   belongs_to :user
-  has_many :comments
+  has_many :comments, :dependent => :delete_all
 end

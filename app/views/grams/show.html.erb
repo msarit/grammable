@@ -1,11 +1,49 @@
-<h1>Gram Detail Page</h1>
-<%= image_tag @gram.picture, class: 'img-fluid' %><br />
-<%= @gram.message %><br />
--- <%= @gram.user.fullname %><br />
+<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+  <div class="card">
+    <div class="handle"><%= @gram.user.fullname %></div>
+      <%= image_tag @gram.picture, class: 'img-fluid' %>
+      
+      <p>
+        <%= @gram.message %>
+      </p>
+      
+      <div class="gram-actions float-right">
+        <% if current_user && current_user == @gram.user %>
+          <%= link_to 'Edit', edit_gram_path(@gram) %>
+          <%= link_to 'Delete', gram_path(@gram), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+      </div>
 
-<% if current_user == @gram.user %>
-<%= link_to 'Edit Gram', edit_gram_path(@gram.id) %><br />
-<%= link_to 'Delete Gram', gram_path(@gram.id), method: :delete %><br />
-<% end %>
-<%= link_to 'Back To Home', root_path %><br />
+      <br class="clear-fix" />
+      
+      <div class="comments">
+        <h3>Comments</h3>
+
+        <% if @gram.comments %>
+          <% @gram.comments.each do |comment| %>
+            <div class="comment">
+              <span class="comment_handle">
+                <%= comment.user.fullname %>
+              </span>
+              "<%= comment.message %>"
+
+              <% if current_user && ((current_user == comment.user) || (current_user == @gram.user)) %>
+                <small><%= link_to 'Delete', gram_comment_path(@gram, comment), method: :delete, data: {confirm: 'Are you sure?'} %></small>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <hr />
+
+        <h4>Add A Comment</h4>
+        <%= simple_form_for Comment.new, url: gram_comments_path(@gram) do |f| %>
+          <%= f.input :message %>
+          <%= f.submit 'Add Comment', class: 'my-btn' %>
+        <% end %>
+      </div>
+
+      
+  </div>
+</div>
 

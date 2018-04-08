@@ -1,7 +1,7 @@
 @import "bootstrap";
 
 :root {
-  --main-blue: #125688;
+  --app-color: #cb5404;
 }
 
 label.control-label.file.optional, label.control-label.file.required {
@@ -10,7 +10,12 @@ label.control-label.file.optional, label.control-label.file.required {
 
 body {
   background-color: #fafafa;
-  font-family: 'Josefin Sans', sans-serif; 
+  font-family: 'Josefin Sans', sans-serif;
+  color: #281000; 
+}
+
+.links {
+  padding-top: 15px;
 }
 
 .top-nav {
@@ -22,7 +27,7 @@ body {
 
 .top-nav .add a {
   font-weight: bold;
-  color: var(--main-blue);
+  color: var(--app-color);
   font-size: 16px;
 }
 
@@ -31,9 +36,10 @@ body {
 } /* the "+" selects from 2nd child on */
 
 .brand a {
-  color: var(--main-blue);
-  font-size: 30px;
-  font-family: 'Pacifico', cursive;
+  color: var(--app-color);
+  font-size: 40px;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
 }
 
 .brand a:hover {
@@ -56,7 +62,7 @@ body {
 
 .handle {
   margin: 10px;
-  color: var(--main-blue);
+  color: var(--app-color);
   font-weight: bold;
   font-size: 18px;
 }
@@ -75,12 +81,17 @@ input {
 }
 
 .my-btn {
-  background-color: var(--main-blue);
+  background-color: var(--app-color);
   width: 100%;
   border: none;
   font-size: 24px;
   color: white;
   margin-top: 10px;
+}
+
+.btn {
+  width: 90%;
+  margin: 0 auto;
 }
 
 #user_remember_me {
@@ -113,7 +124,21 @@ input {
 }
 
 .comment_handle {
-  color: var(--main-blue);
+  color: var(--app-color);
   font-weight: bold;
   font-size: 18px;
+}
+
+hr {
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(203, 84, 4, 0.75), rgba(0, 0, 0, 0));
+  margin: 30px 0;
+}
+
+p.alert {
+  position: absolute;
+  width: 97%;
+  padding: 3px;
+  z-index: 2;
 }

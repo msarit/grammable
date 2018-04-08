@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
 
   </head>
@@ -21,10 +21,8 @@
         <div class="add float-right">
           <% if current_user %>
             Hello, <strong><%= current_user.fullname %></strong>!<br />
-            <div class="links float-right">
               <%= link_to 'New Gram', new_gram_path %>    
               <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-            </div>
             <% else %>
             <%= link_to 'Sign In', new_user_session_path %>
             <%= link_to 'Sign Up', new_user_registration_path %>
@@ -36,14 +34,15 @@
 
     <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
       <% if notice.present? %>
-        <p class="notice"><%= notice %></p>
+        <p class="alert alert-info"><%= notice %></p>
       <% end %>
       <% if alert.present? %>
-        <p class="alert"><%= alert %></p>
+        <p class="alert alert-danger"><%= alert %></p>
       <% end %>
     </div>
 
     <%= yield %>
 
+    <br /><br /><br /><br />
   </body>
 </html>
