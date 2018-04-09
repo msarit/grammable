@@ -61,6 +61,6 @@ class GramsController < ApplicationController
   private
 
   def gram_params
-    params.require(:gram).permit(:message, :id, :picture)
+    params.require(:gram).permit(:message, :id, :picture, :comment_id)
   end
 end

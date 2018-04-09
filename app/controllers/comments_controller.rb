@@ -3,12 +3,10 @@ class CommentsController < ApplicationController
 
   def create
     @gram = Gram.find_by_id(params[:gram_id])
-    if @gram.blank?
-      return render_not_found
-      else
-      @gram.comments.create(comment_params.merge(user: current_user))
-      redirect_to gram_path(@gram)
-    end
+    return render_not_found if @gram.blank?
+    
+    @gram.comments.create(comment_params.merge(user: current_user))
+    redirect_to gram_path(@gram)
   end
 
   def destroy
