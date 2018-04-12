@@ -130,11 +130,16 @@ input {
   line-height: 44px;
 }
 
-.gram-actions {
-  font-weight: bold;
-  font-size: 16px;
+.gram-actions a {
+  font-size: 14px;
   margin-right: 20px;
   margin-left: auto;
+  color: var(--app-color);
+  float: right;
+}
+
+.gram-actions a:hover {
+  color: var(--app-color);
 }
 
 .comments {

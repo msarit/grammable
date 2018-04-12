@@ -10,10 +10,10 @@
       <%= @gram.message %>
     </p>
     
-    <div class="gram-actions float-right">
+    <div class="gram-actions">
       <% if current_user && current_user == @gram.user %>
-        <%= link_to 'Edit', edit_gram_path(@gram) %>
         <%= link_to 'Delete', gram_path(@gram), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <%= link_to 'Edit', edit_gram_path(@gram) %>
       <% end %>
     </div>
 
