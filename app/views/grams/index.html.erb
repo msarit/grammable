@@ -3,7 +3,7 @@
     <div class="card">
       <div class="handle">
         <%= link_to gram.user.fullname, user_path(gram.user) %>
-        <small class="float-right"><%= gram.created_at.strftime("%m.%d.%Y") %></small>
+        <small class="float-right"><%= gram.created_at.strftime("%D") %></small>
       </div>
       <%= image_tag gram.picture, class: 'img-fluid' %>
 
