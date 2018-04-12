@@ -18,102 +18,103 @@
     </div>
 
     <br class="clear-fix" />
-    
+
     <div class="comments">
-      <h3>Comments</h3>
-
-        <% if @gram.comments.count > 0 %>
-          <% @gram.comments.order(:id).reverse_order.each do |comment| %>
-            <div class="comment">
-              <span class="comment_handle">
-                <%= comment.user.fullname %>
-              </span>
-              "<%= comment.message %>"
-            </div>
-
-            <div class="row">
-              <div class="col-3">
-
-                <% if comment.responses.count == 1 %>
-                  <small><em>(<%= comment.responses.count %> reply)</em></small>
-                  <% else %>
-                  <small><em>(<%= comment.responses.count %> replies)</em></small>
-                <% end %>
-
-                <br />
-
-                <span class="hideshow"><i class="fa fa-eye fa-xs"></i></span>
-
-                <%= link_to '<i class="fa fa-comment fa-xs"></i>'.html_safe, '#', data: {toggle: 'modal', target: "#replyModal-#{comment.id}"} %>
-
-                <!-- Modal -->
-                  <div class="modal fade" id="replyModal-<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel">
-                            Reply to Comment
-                          </h4>
-                        </div>
-                      
-                        <%= simple_form_for Response.new, url: gram_comment_responses_path(@gram, comment) do |f| %>
-                          <div class="modal-body">
-                            <%= f.input :message %>
-                          </div>
-
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <%= f.submit 'Reply', class: 'btn btn-primary' %>
-                          </div>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <!-- END Model -->
-
-                <% if current_user && ((current_user == comment.user) || (current_user == @gram.user)) %>
-                  <span><%= link_to '<i class="fa fa-trash fa-xs"></i>'.html_safe, gram_comment_path(@gram, comment), method: :delete, data: {confirm: 'Are you sure?'} %></span>
-                <% end %>
-              </div>
-
-              <div class="col-9">
-                <div class="response-block initial-hide">
-                  <% if comment.responses.count > 0 %>
-                    <% comment.responses.order(:id).each do |response| %>
-                      <small class="response">
-                        <span class="response-handle">
-                          <%= response.user.fullname %>
-                        </span>
-                        "<%= response.message %>"
-
-                        <% if current_user && ((current_user == response.user) || (current_user == comment.user)) %>
-                          <span><%= link_to '<i class="fa fa-trash fa-xs"></i>'.html_safe, gram_comment_response_path(@gram, comment, response), method: :delete, data: {confirm: 'Are you sure?'} %>
-                          </span>
-                        <% end %>
-                      </small>
-                      <br />
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          <% else %>
-            <p>
-              No comments yet; like to leave one?
-            </p>
-        <% end %>
-
-        <hr />
-
+      
       <h4>Add A Comment</h4>
       <%= simple_form_for Comment.new, url: gram_comments_path(@gram) do |f| %>
         <%= f.input :message %>
         <%= f.submit 'Add Comment', class: 'my-btn' %>
+      <% end %>
+
+      <hr />
+    
+      <h3>Comments</h3>
+
+      <% if @gram.comments.count > 0 %>
+        <% @gram.comments.order(:id).reverse_order.each do |comment| %>
+          <div class="comment">
+            <span class="comment_handle">
+              <%= comment.user.fullname %>
+            </span>
+            "<%= comment.message %>"
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+
+              <% if comment.responses.count == 1 %>
+                <small><em>(<%= comment.responses.count %> reply)</em></small>
+                <% else %>
+                <small><em>(<%= comment.responses.count %> replies)</em></small>
+              <% end %>
+
+              <br />
+
+              <span class="hideshow"><i class="fa fa-eye fa-xs"></i></span>
+
+              <%= link_to '<i class="fa fa-comment fa-xs"></i>'.html_safe, '#', data: {toggle: 'modal', target: "#replyModal-#{comment.id}"} %>
+
+              <!-- Modal -->
+                <div class="modal fade" id="replyModal-<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                          Reply to Comment
+                        </h4>
+                      </div>
+                    
+                      <%= simple_form_for Response.new, url: gram_comment_responses_path(@gram, comment) do |f| %>
+                        <div class="modal-body">
+                          <%= f.input :message %>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <%= f.submit 'Reply', class: 'btn btn-primary' %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <!-- END Model -->
+
+              <% if current_user && ((current_user == comment.user) || (current_user == @gram.user)) %>
+                <span><%= link_to '<i class="fa fa-trash fa-xs"></i>'.html_safe, gram_comment_path(@gram, comment), method: :delete, data: {confirm: 'Are you sure?'} %></span>
+              <% end %>
+            </div>
+
+            <div class="col-9">
+              <div class="response-block initial-hide">
+                <% if comment.responses.count > 0 %>
+                  <% comment.responses.order(:id).each do |response| %>
+                    <small class="response">
+                      <span class="response-handle">
+                        <%= response.user.fullname %>
+                      </span>
+                      "<%= response.message %>"
+
+                      <% if current_user && ((current_user == response.user) || (current_user == comment.user)) %>
+                        <span><%= link_to '<i class="fa fa-trash fa-xs"></i>'.html_safe, gram_comment_response_path(@gram, comment, response), method: :delete, data: {confirm: 'Are you sure?'} %>
+                        </span>
+                      <% end %>
+                    </small>
+                    <br />
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% else %>
+          <p>
+            No comments yet; like to leave one?
+          </p>
       <% end %>
     </div>
   </div>
