@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       resources :responses, only: [:create, :destroy]
     end
   end
+  resources :users, only: [:show]
 end

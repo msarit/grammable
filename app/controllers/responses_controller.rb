@@ -3,7 +3,7 @@ class ResponsesController < ApplicationController
 
 
   def create
-    @gram = Gram.find(params[:gram_id])
+    @gram = Gram.find_by_id(params[:gram_id])
     return render_not_found if @gram.blank?
 
     @comment = @gram.comments.find(params[:comment_id])
@@ -14,7 +14,7 @@ class ResponsesController < ApplicationController
   end
 
   def destroy
-    @gram = Gram.find(params[:gram_id])
+    @gram = Gram.find_by_id(params[:gram_id])
     return render_not_found if @gram.blank?
 
     @comment = @gram.comments.find(params[:comment_id])
@@ -28,6 +28,6 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:message, :comment_id, :user_id, :gram_id)
+    params.require(:response).permit(:message, :comment_id, :user_id)
   end
 end

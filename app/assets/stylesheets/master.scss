@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 :root {
   --app-color: #cb5404;
@@ -12,6 +13,22 @@ body {
   background-color: #fafafa;
   font-family: 'Josefin Sans', sans-serif;
   color: #281000; 
+}
+
+a:hover {
+  color: white;
+}
+
+.hideshow, .fa-trash, .fa-comment {
+  color: grey;
+}
+
+.hideshow:hover, .fa-trash:hover, .fa-comment:hover {
+  color: var(--app-color);
+}
+
+.grey-col {
+  color: grey;
 }
 
 .links {
@@ -60,11 +77,17 @@ body {
   margin: 20px;
 }
 
-.handle {
+.handle, .handle a {
   margin: 10px;
   color: var(--app-color);
   font-weight: bold;
   font-size: 18px;
+}
+
+.user-handle {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--app-color);
 }
 
 .form {
@@ -145,4 +168,17 @@ p.alert {
   width: 97%;
   padding: 3px;
   z-index: 2;
+}
+
+.response-block {
+  margin-left: 20px;
+}
+
+.response-handle {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.initial-hide {
+  display: none;
 }
