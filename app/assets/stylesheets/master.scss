@@ -38,23 +38,31 @@ a:hover {
 .top-nav {
   background-color: white;
   border-bottom: 3px solid #edeeee;
-  height: 80px;
+  height: 110px;
   padding-top: 15px;
 }
 
 .top-nav .add a {
   font-weight: bold;
   color: var(--app-color);
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .top-nav .add a + a {
   padding-left: 8px;
 } /* the "+" selects from 2nd child on */
 
+div .add {
+  margin-top: 15px;
+}
+
+.greet {
+  font-size: 17px;
+}
+
 .brand a {
   color: var(--app-color);
-  font-size: 40px;
+  font-size: 45px;
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
 }

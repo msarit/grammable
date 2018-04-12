@@ -1,8 +1,11 @@
-<div class="col-12 col-lg-8 offset-lg-2">
+<div class="col-12 col-md-8 offset-md-2">
   <h2 class="user-handle"><%= @user.fullname %>'s Grams</h2>
   <% @user.grams.reverse_order.each do |gram| %>
     <div class="card">
-      <!-- <div class="handle"><%= gram.user.fullname %></div> -->
+      <div class="handle">
+        <small class="float-right"><%= gram.created_at.strftime("%D") %></small>
+      </div>
+
       <%= image_tag gram.picture, class: 'img-fluid' %>
 
       <p>

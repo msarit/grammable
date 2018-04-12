@@ -14,13 +14,13 @@
 
   <body>
     <div class="top-nav">
-      <div class="col-12 col-lg-8 offset-lg-2">
+      <div class="col-12 col-md-8 offset-md-2">
         <div class="brand float-left">
           <%= link_to 'Grammable', root_path %>
         </div>
         <div class="add float-right">
           <% if current_user %>
-            Hello, <strong><%= current_user.fullname %></strong>!<br />
+            <span class="greet">Hello, <strong><%= current_user.fullname %></strong>!</span><br />
               <%= link_to 'New Gram', new_gram_path %>    
               <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
             <% else %>
