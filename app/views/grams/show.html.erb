@@ -99,7 +99,7 @@
                       </span>
                       "<%= response.message %>"
 
-                      <% if current_user && ((current_user == response.user) || (current_user == comment.user)) %>
+                      <% if current_user && ((current_user == response.user) || (current_user == comment.user) || (current_user == @gram.user)) %>
                         <span><%= link_to '<i class="fa fa-trash fa-xs"></i>'.html_safe, gram_comment_response_path(@gram, comment, response), method: :delete, data: {confirm: 'Are you sure?'} %>
                         </span>
                       <% end %>

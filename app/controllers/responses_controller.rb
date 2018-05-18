@@ -6,7 +6,7 @@ class ResponsesController < ApplicationController
     @gram = Gram.find_by_id(params[:gram_id])
     return render_not_found if @gram.blank?
 
-    @comment = @gram.comments.find(params[:comment_id])
+    @comment = @gram.comments.find_by_id(params[:comment_id])
     return render_not_found if @comment.blank?
 
     @comment.responses.create(response_params.merge(user: current_user))
@@ -17,7 +17,7 @@ class ResponsesController < ApplicationController
     @gram = Gram.find_by_id(params[:gram_id])
     return render_not_found if @gram.blank?
 
-    @comment = @gram.comments.find(params[:comment_id])
+    @comment = @gram.comments.find_by_id(params[:comment_id])
     return render_not_found if @comment.blank?
 
     @response = @comment.responses.find(params[:id])

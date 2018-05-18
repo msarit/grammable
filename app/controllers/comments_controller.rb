@@ -13,7 +13,10 @@ class CommentsController < ApplicationController
     @gram = Gram.find_by_id(params[:gram_id])
     return render_not_found if @gram.blank?
 
-    @comment = @gram.comments.find(params[:id])
+    @comment = @gram.comments.find_by_id(params[:id])
+    return render_not_found if @comment.blank?
+    return render_not_found(:forbidden) if (current_user != @gram.user) || (current_user != @comment.user)
+
     @comment.destroy
     redirect_to gram_path(@gram)
   end
