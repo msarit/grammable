@@ -1,24 +1,18 @@
-# README
+## Grammable
+An Instagram-like application where users share and comment on pictures.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
+* Built on Rails
+* Mobile-responsive
+* Developed on Rails
+* Features a general feed of all pictures, as well as user-specific feeds
+* Users may edit and/or delete their "grams", comments and responses
 
-Things you may want to cover:
+## Build status
+(coming soon)
 
-* Ruby version
+## Screenshots
+![alt tag](https://image.ibb.co/jaX25o/grammable_screenshot.png)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Credits
+* [The Firehose Project](https://thefirehoseproject.com)
