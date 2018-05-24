@@ -59,7 +59,7 @@ RSpec.describe CommentsController, type: :controller do
       this_gram = comment.reload_gram
       sign_in comment.user
 
-      delete :destroy, params: { gram_id: comment.gram_id, id: comment.id } # this action isnt happening
+      delete :destroy, params: { gram_id: comment.gram_id, id: comment.id }
       expect(response).to redirect_to gram_path(this_gram)
 
       comment = Comment.find_by_id(comment.id)

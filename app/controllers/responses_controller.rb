@@ -20,9 +20,15 @@ class ResponsesController < ApplicationController
     @comment = @gram.comments.find_by_id(params[:comment_id])
     return render_not_found if @comment.blank?
 
-    @response = @comment.responses.find(params[:id])
-    @response.destroy
-    redirect_to gram_path(@gram)
+    @response = @comment.responses.find_by_id(params[:id])
+    return render_not_found if @response.blank?
+
+    if (current_user == @gram.user) || (current_user == @comment.user) || (current_user == @response.user)
+      @response.destroy
+      redirect_to gram_path(@gram)
+    else
+      return render_not_found(:forbidden)
+    end
   end
 
   private
