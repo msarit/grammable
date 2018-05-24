@@ -54,17 +54,17 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     # THE BELOW TEST ISNT WORKING!!!!!!
-    # it "should allow comment creator to successfully delete comments" do
-    #   comment = FactoryBot.create(:comment)
-    #   this_gram = comment.reload_gram
-    #   sign_in comment.user
+    it "should allow comment creator to successfully delete comments" do
+      comment = FactoryBot.create(:comment)
+      this_gram = comment.reload_gram
+      sign_in comment.user
 
-    #   delete :destroy, params: { gram_id: comment.gram_id, id: comment.id } # this action isnt happening
-    #   redirect_to gram_path(this_gram)
+      delete :destroy, params: { gram_id: comment.gram_id, id: comment.id } # this action isnt happening
+      expect(response).to redirect_to gram_path(this_gram)
 
-    #   comment = Comment.find_by_id(comment.id)
-    #   expect(comment).to eq(nil)
-    # end
+      comment = Comment.find_by_id(comment.id)
+      expect(comment).to eq(nil)
+    end
 
     it "should return a 404 error if comment with the specified id cannot be found" do
       comment = FactoryBot.create(:comment)
