@@ -1,6 +1,6 @@
-<kbd>
+<kdb>
 <img src="https://image.ibb.co/jaX25o/grammable_screenshot.png">
-</kbd>
+</kdb>
 
 ## Grammable
 An Instagram-like application where users share and comment on pictures.
