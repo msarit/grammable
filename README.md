@@ -8,7 +8,7 @@ An Instagram-like application where users share and comment on pictures.
 * Users may edit and/or delete their "grams", comments and responses
 
 ## Build status
-(coming soon)
+[![Build Status](https://travis-ci.org/msarit/grammable.svg?branch=master)](https://travis-ci.org/msarit/grammable)
 
 ## Screenshots
 ![alt tag](https://image.ibb.co/jaX25o/grammable_screenshot.png)
